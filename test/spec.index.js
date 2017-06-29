@@ -1734,7 +1734,9 @@ describe('Template Mixins', function () {
                     middleware(req, res, next);
                     res.locals['radio-group']().call(res.locals, 'field-name');
                     renderChild = render.lastCall.args[0].renderChild();
-                    renderChild.call(fields['field-name'].options[0]).should.be.equal('<div id="child-field-name-panel" class="reveal js-hidden">\n    <div class="panel-indent">\n<div>some html</div>    </div>\n</div>\n');
+                    var output = '<div id="child-field-name-panel" class="reveal js-hidden panel panel-border-narrow">\n<div>some html</div></div>';
+
+                    renderChild.call(fields['field-name'].options[0]).trim().should.be.equal(output.trim());
                     sinon.stub(Hogan, 'compile').returns({
                         render: render
                     });
@@ -1751,12 +1753,8 @@ describe('Template Mixins', function () {
                     sinon.stub(res.locals, 'input-text').returns(function (key) {
                         return Hogan.compile('<div>{{key}}</div>').render({ key: key });
                     });
-                    var output = '<div id="child-field-name-panel" class="reveal js-hidden">';
-                    output += '\n    <div class="panel-indent">\n';
-                    output += '<div>child-field-name</div>';
-                    output += '    </div>';
-                    output += '\n</div>\n';
-                    renderChild.call(_.extend({}, fields['field-name'].options[0], res.locals)).should.be.equal(output);
+                    var output = '<div id="child-field-name-panel" class="reveal js-hidden panel panel-border-narrow">\n<div>child-field-name</div></div>';
+                    renderChild.call(_.extend({}, fields['field-name'].options[0], res.locals)).trim().should.be.equal(output.trim());
                     res.locals['input-text'].restore();
                     sinon.stub(Hogan, 'compile').returns({
                         render: render
@@ -1830,12 +1828,8 @@ describe('Template Mixins', function () {
                     sinon.stub(res.locals, 'input-text').returns(function (key) {
                         return Hogan.compile('<div>{{key}}</div>').render({ key: key });
                     });
-                    var output = '<div id="child-field-name-panel" class="reveal js-hidden">';
-                    output += '\n    <div class="panel-indent">\n';
-                    output += '<div>child-field-name</div>';
-                    output += '    </div>';
-                    output += '\n</div>\n';
-                    renderChild.call(_.extend({}, fields['field-name'], res.locals)).should.be.equal(output);
+                    var output = '<div id="child-field-name-panel" class="reveal js-hidden panel panel-border-narrow">\n<div>child-field-name</div></div>';
+                    renderChild.call(_.extend({}, fields['field-name'], res.locals)).trim().should.be.equal(output.trim());
                     sinon.stub(Hogan, 'compile').returns({
                         render: render
                     });
