@@ -95,7 +95,7 @@ This mixin takes a `key=value` query string and returns a query string with the 
 
 ### renderField
 
-The renderField mixin can be called in your template with the field to render as the scope. This will lookup the field.mixin in res.locals and call it passing the field key.
+The renderField mixin can be called in your template to render all fields. This will lookup the field.mixin in res.locals and call it passing the field key.
 
 ```html
 {{#fields}}
@@ -115,6 +115,19 @@ module.exports = {
 If mixin is omitted `input-text` will be used
 
 To disable auto-rendering of a field, set `disableRender: true` in the field config. This is required when using the `child` element rendering functionality to prevent the field being rendered multiple times.
+
+
+### Render a single field ###
+
+To render a specific fields in your templates use the mixin name (matching those above) and field name like so...
+
+```html
+{{#input-text}}myTextField{{/input-text}}
+
+{{#select}}mySelectMenu{{/select}}
+
+{{#radio-group}}myRadioGroup{{/radio-group}}
+```
 
 ## Options
 
