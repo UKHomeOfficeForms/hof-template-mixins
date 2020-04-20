@@ -1045,6 +1045,7 @@ describe('Template Mixins', () => {
               value: 'bar'
             }, {
               label: 'Baz',
+              hint: 'baz hint',
               value: 'baz'
             }]
           }
@@ -1067,6 +1068,7 @@ describe('Template Mixins', () => {
           }, {
             label: 'Baz',
             value: 'baz',
+            hint: 'baz hint',
             type: 'checkbox',
             selected: false,
             toggle: undefined
