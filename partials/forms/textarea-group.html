@@ -8,7 +8,7 @@
     <textarea
         name="{{id}}"
         id="{{id}}"
-        class="form-control{{#className}} {{className}}{{/className}}{{#error}} invalid-input{{/error}}"
+        class="form-control{{#className}} {{className}}{{/className}} {{#maxlength}}maxlength{{/maxlength}}{{#error}} invalid-input{{/error}}"
         aria-required="{{required}}"
         {{#maxlength}} maxlength="{{maxlength}}"{{/maxlength}}
         {{#attributes}}
@@ -17,4 +17,5 @@
         {{^error}}{{#hintId}} aria-describedby="{{hintId}}"{{/hintId}}{{/error}}
         {{#error}} aria-invalid="true" aria-describedby="{{id}}-error"{{/error}}
     >{{value}}</textarea>
+    {{#maxlength}}<span id="{{id}}-maxlength-hint"class="maxlength-hint form-hint">You can enter up to {{maxlength}} characters</span>{{/maxlength}}
 </div>
