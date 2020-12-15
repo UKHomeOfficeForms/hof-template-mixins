@@ -14,7 +14,9 @@
         {{#attributes}}
             {{attribute}}="{{value}}"
         {{/attributes}}
-        {{^error}}{{#hintId}} aria-describedby="{{#maxlength}}{{id}}-maxlength-hint{{/maxlength}} {{hintId}}"{{/hintId}}{{/error}}
+        {{^error}}{{#hintId}}{{#maxlength}} aria-describedby="{{id}}-maxlength-hint {{hintId}}"{{/maxlength}}{{/hintId}}{{/error}}
+        {{^error}}{{#hintId}}{{^maxlength}} aria-describedby="{{hintId}}"{{/maxlength}}{{/hintId}}{{/error}}
+        {{^error}}{{^hintId}}{{#maxlength}} aria-describedby="{{id}}-maxlength-hint"{{/maxlength}}{{/hintId}}{{/error}}
         {{#error}} aria-invalid="true" aria-describedby="{{id}}-error"{{/error}}
     >{{value}}</textarea>
     {{#maxlength}}<span id="{{id}}-maxlength-hint" class="maxlength-hint form-hint" aria-live="polite">You can enter up to {{maxlength}} characters</span>{{/maxlength}}
